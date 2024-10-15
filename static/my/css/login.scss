@@ -1,0 +1,100 @@
+@font-face {
+    font-family: 'HuaGuangGangTieZhiHei';
+    /* 这里用的是相对地址，相对login.scss的位置 */
+    src: url('../font/Ye.ttf');
+}
+
+nav {
+    background-color: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    position: relative;
+
+    a {
+        color: #333333;
+    }
+}
+
+main {
+    margin-top: inherit;
+    min-height: calc(932px - 60px - 120px);
+    align-items: center;
+    justify-content: center;
+}
+
+.login_form {
+    width: 600px;
+    min-height: 400px;
+    background-color: white;
+    border-radius: 5px;
+    padding: 40px 80px;
+
+    .title {
+        margin-bottom: 20px;
+        text-align: center;
+        font-size: 32px;
+        font-family: 'HuaGuangGangTieZhiHei';
+        color: #409eff;
+    }
+
+    > label {
+        margin-bottom: 5px;
+        display: inline-block;
+        color: #555555;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    .row {
+        margin-bottom: 10px;
+    }
+
+    .code {
+        display: flex;
+        justify-content: space-between;
+
+        .el-input {
+            width: 52%;
+        }
+
+        .code_img,
+        > img {
+            width: 200px;
+            height: 40px;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #145eaa;
+            border: 1px solid #f0eeee;
+            overflow: hidden;
+
+            &::before {
+                content: '获取验证码';
+                color: white;
+                height: 100%;
+                font-size: 14px;
+                justify-content: center;
+                align-items: center;
+                display: flex;
+                letter-spacing: 4px;
+            }
+        }
+    }
+
+    input {
+        text-indent: inherit;
+    }
+
+    .pwd_info {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+
+        > a {
+            font-size: 14px;
+            color: #555555;
+        }
+    }
+
+    .login_btn {
+        width: 100%;
+    }
+}

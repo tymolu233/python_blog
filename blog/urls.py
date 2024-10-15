@@ -9,6 +9,7 @@ from app01 import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", views.index),
+    path("login/", views.login),
 
     re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
 

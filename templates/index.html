@@ -1,14 +1,25 @@
 <!DOCTYPE html>
+{% load my_tags %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>首页</title>
+    {% block title %}
+         <title>首页</title>
+    {% endblock %}
+    
     <link rel="stylesheet" href="/static/my/css/reset.css">
-    <link rel="stylesheet" href="/static/my/css/index.css">
+    <link rel="stylesheet" href="/static/my/css/base.css">
+    {% block css %}
+        <link rel="stylesheet" href="/static/my/css/index.css">
+    {% endblock %}
+    <link rel="stylesheet" href="/static/node_modules/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="/static/font-awesome-4.7.0/css/font-awesome.css">
+
 </head>
 <body>
     <div id="app">
-        <nav class="flex">
+    {% block body %}
+    	<nav class="flex">
             <div class="left">
                 <a href="/">首页</a>
                 <a href="#">其他</a>
@@ -18,26 +29,18 @@
                 <a href="#">其他</a>
             </div>
             <div class="right">
-                <a href="#">登录</a>
+                <a href="/login/">登录</a>
                 <a href="#">注册</a>
             </div>
         </nav>
-        <header>
-            <div class="slogan center">
-                <div class="title">
-                    114514
-                </div>
-                <p>amns</p>
-            </div>
-            <div class="banner">
-                <img src="http://image.fengfengzhidao.com/gvb_1009/20231123092743__1123-h.png" alt="">
-                <img src="http://image.fengfengzhidao.com/gvb_1009/20231123092743__1123-i.png" alt="">
-                <img src="http://image.fengfengzhidao.com/gvb_1009/20231019173356__wallhaven-jxl31y.png" alt="">
-                <img src="http://image.fengfengzhidao.com/gvb_1009/20231019173356__wallhaven-57yr13.jpg" alt="">
-                <img src="http://image.fengfengzhidao.com/gvb_1009/20231123092743__1123-c.png" alt="">
-            </div>
-        </header>
-        <main class="flex">
+        {%block header %}
+          {% banner 'index' %}
+        {% endblock %}
+    
+      
+        {% block main %}
+           <main class="flex">
+            {%  block content %}
             <div class="main flex">
                 <div class="left">
                     <div class="card">
@@ -45,7 +48,7 @@
                             精选文章
                         </div>
                         <div class="body">
-                            内容
+                            <el-button type="primary">按钮</el-button>
                         </div>
                     </div>
                 </div>
@@ -68,7 +71,11 @@
                     </div>
                 </div>
             </div>
-        </main>
+            {% endblock %}
+            
+        </main> 
+        {% endblock %}
+        
         <footer class="flex">
             <div class="left center">
                 <p>建站日期：114514</p>
@@ -77,6 +84,44 @@
                 <p>联系我吧</p>
             </div>
         </footer>
-    </div>
+    {% endblock %}
+</div>
+
+{% block all_js %}
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/static/node_modules/vue/dist/vue.js"></script>
+    <script src="/static/node_modules/axios/dist/axios.js"></script>
+    <script src="/static/node_modules/element-ui/lib/index.js"></script>
+
+    <script>
+        var vue = new Vue({
+            el: '#app',
+            data: {}
+        })
+    </script>
+    
+    <script>
+        function init_banner() {
+            let banner = $('#banner');
+            let img_list = banner.children();
+            let len = img_list.length;
+            if (len <= 1) return;
+
+            let index = 0;
+            let time = Number(banner.attr('banner_time')) || 6;
+
+            setInterval(() => {
+                index++;
+                if (index >= len) index = 0;
+                img_list.css({opacity: 0});
+                img_list[index].style.opacity = 1;
+            }, time * 1000);
+
+            console.log(time);
+        }
+        init_banner();
+    </script>
+{% endblock %}
+
 </body>
 </html>

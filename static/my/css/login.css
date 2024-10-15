@@ -1,0 +1,91 @@
+@charset "UTF-8";
+@font-face {
+  font-family: "HuaGuangGangTieZhiHei";
+  /* 这里用的是相对地址，相对login.scss的位置 */
+  src: url("../font/Ye.ttf");
+}
+nav {
+  background-color: white;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+nav a {
+  color: #333333;
+}
+
+main {
+  margin-top: inherit;
+  min-height: 752px;
+  align-items: center;
+  justify-content: center;
+}
+
+.login_form {
+  width: 600px;
+  min-height: 400px;
+  background-color: white;
+  border-radius: 5px;
+  padding: 40px 80px;
+}
+.login_form .title {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 32px;
+  font-family: "HuaGuangGangTieZhiHei";
+  color: #409eff;
+}
+.login_form > label {
+  margin-bottom: 5px;
+  display: inline-block;
+  color: #555555;
+  font-size: 14px;
+  cursor: pointer;
+}
+.login_form .row {
+  margin-bottom: 10px;
+}
+.login_form .code {
+  display: flex;
+  justify-content: space-between;
+}
+.login_form .code .el-input {
+  width: 52%;
+}
+.login_form .code .code_img,
+.login_form .code > img {
+  width: 200px;
+  height: 40px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #145eaa;
+  border: 1px solid #f0eeee;
+  overflow: hidden;
+}
+.login_form .code .code_img::before,
+.login_form .code > img::before {
+  content: "获取验证码";
+  color: white;
+  height: 100%;
+  font-size: 14px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  letter-spacing: 4px;
+}
+.login_form input {
+  text-indent: inherit;
+}
+.login_form .pwd_info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.login_form .pwd_info > a {
+  font-size: 14px;
+  color: #555555;
+}
+.login_form .login_btn {
+  width: 100%;
+}
+
+/*# sourceMappingURL=login.css.map */
