@@ -13,26 +13,36 @@
 
 {% block content %}
 <div class="login_form">
-    <h2 class="title">用户登录</h2>
+    {% block sing_title %}
+            <h2 class="title">用户登录</h2>
+    {% endblock %}
+
     <label for="login_name">请输入用户名</label>
     <div class="row">
-        <el-input id="login_name" placeholder="请输入用户名"></el-input>
+        <el-input id="login_name" v-model="login_form.name" placeholder="请输入用户名"></el-input>
     </div>
     <label for="login_pwd">请输入密码</label>
     <div class="row">
-        <el-input id="login_pwd" placeholder="请输入密码"></el-input>
+        <el-input id="login_pwd" v-model="login_form.pwd" placeholder="请输入密码"></el-input>
     </div>
+    {% block sign %}
+        
+    {% endblock %}
     <label for="login_code">请输入图形验证码</label>
     <div class="row code">
-        <el-input id="login_code" placeholder="请输入验证码"></el-input>
-        <div class="code_img"></div>
+        <el-input id="login_code" v-model="login_form.code" placeholder="请输入验证码"></el-input>
+        <img src="/get_random_code/" alt="">
     </div>
-    <div class="row pwd_info">
+    
+    {% block sing_btn %}
+        <div class="row pwd_info">
         <el-checkbox>记住密码</el-checkbox>
         <a href="javascript:void(0);">忘记密码</a>
-    </div>
-    <div class="row">
-        <el-button class="login_btn" type="primary">登录</el-button>
-    </div>
+        </div>
+        <div class="row">
+            <el-button class="login_btn" @click="login" type="primary">登录</el-button>
+        </div>
+    {% endblock %}
+    
 </div>
 {% endblock %}

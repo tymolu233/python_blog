@@ -30,14 +30,14 @@
             </div>
             <div class="right">
                 <a href="/login/">登录</a>
-                <a href="#">注册</a>
+                <a href="/sign/">注册</a>
             </div>
         </nav>
         {%block header %}
           {% banner 'index' %}
         {% endblock %}
     
-      
+        {% csrf_token %} }
         {% block main %}
            <main class="flex">
             {%  block content %}
@@ -94,9 +94,44 @@
     <script src="/static/node_modules/element-ui/lib/index.js"></script>
 
     <script>
+        //axios
+        axios.interceptors.request.use(request => {
+            if(request.methods !== 'get') {
+                let csrf_token = document.querySelector('[name="csrfmiddlewaretoken"]').value
+                request.headers['X-CSRFToken'] = csrf_token
+                return request
+            }
+        })
+        //axios_r
+        axios.interceptors.response.use(response => {
+            return response.data
+        })
+        
         var vue = new Vue({
             el: '#app',
-            data: {}
+            data: {
+                login_form: {
+                    name: '',
+                    pwd: '',
+                    re_pwd: '',
+                    code: '',
+                    
+                }
+            },
+            methods: {
+                login(){
+                    axios.post('/api/login/',this.login_form,).then(res => {
+                        if(res.code){
+                            this.$message.error(res.msg)
+                            return
+                        }
+                        this.$message.success(res.msg)
+                        setTimeout(() => {
+                            location.href = '/'
+                        },1000)
+                    })
+                }
+            }
         })
     </script>
     

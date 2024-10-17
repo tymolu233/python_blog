@@ -1,0 +1,23 @@
+{% extends 'login.html' %}
+
+{% block title %}
+    <title>用户注册</title>
+{% endblock %}
+
+{% block sing_title %}
+	<h2 class="title" style="color:#f56c6c">用户注册</h2>
+{% endblock %}
+
+{% block sign %}
+     <label for="login_pwd">请输入确认密码</label>
+    <div class="row">
+        <el-input id="login_pwd" v-model="login_form.re_pwd" placeholder="请输入密码"></el-input>
+    </div>
+	
+{% endblock %}
+	
+{% block sing_btn %}
+        <div class="row">
+            <el-button class="login_btn" type="danger">注册</el-button>
+        </div>
+{% endblock %}
